@@ -4,6 +4,7 @@ import com.bruijs.thomas.rentathingopt3.model.Medewerker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class MenuController {
     private Medewerker medewerker;
@@ -12,7 +13,8 @@ public class MenuController {
 
     @FXML
     void logOut(ActionEvent event) {
-
+        Stage stage = (Stage) medewerkerLabel.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
@@ -27,5 +29,10 @@ public class MenuController {
 
     public void setMedewerker(Medewerker medewerker) {
         this.medewerker = medewerker;
+        initialize();
+    }
+
+    private void initialize() {
+        medewerkerLabel.setText("Medewerker: "+medewerker.getGebruikersnaam());
     }
 }

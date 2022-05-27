@@ -25,4 +25,7 @@ public class MenuController {
 
     }
 
+    public void setMedewerker(Medewerker medewerker) {
+        this.medewerker = medewerker;
+    }
 }

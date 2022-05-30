@@ -1,4 +1,4 @@
-package com.bruijs.thomas.rentathingopt3.model;
+package com.bruijs.thomas.rentathingopt3.model.product;
 
 import java.time.LocalDate;
 

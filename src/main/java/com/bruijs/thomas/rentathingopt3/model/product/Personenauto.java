@@ -27,4 +27,9 @@ public class Personenauto extends Product {
     public int getGewicht() {
         return gewicht;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+String.format(" Merk: %s | Gewicht: %dkg |", this.merk, this.gewicht);
+    }
 }

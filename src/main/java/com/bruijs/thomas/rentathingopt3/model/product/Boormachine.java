@@ -26,4 +26,9 @@ public class Boormachine extends Product {
     public String getType() {
         return type;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+String.format(" Merk: %s | Type %s |", this.merk, this.type);
+    }
 }

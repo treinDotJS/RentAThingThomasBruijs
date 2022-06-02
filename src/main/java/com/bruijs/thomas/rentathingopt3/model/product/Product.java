@@ -14,4 +14,9 @@ public abstract class Product {
     public void setOpVoorraad(boolean opVoorraad) {
         this.opVoorraad = opVoorraad;
     }
+
+    @Override
+    public String toString() {
+        return String.format("| %s | Voorraad: %s | ", this.getClass().getSimpleName(), opVoorraad ? "Ja" : "Nee");
+    }
 }

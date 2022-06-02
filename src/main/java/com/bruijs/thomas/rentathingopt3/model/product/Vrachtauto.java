@@ -25,4 +25,9 @@ public class Vrachtauto extends Product {
     public int getGewicht() {
         return gewicht;
     }
+
+    @Override
+    public String toString() {
+        return super.toString()+String.format(" Gewicht: %dkg | Laadvermogen: %dkg |", this.gewicht, this.laadvermogen);
+    }
 }

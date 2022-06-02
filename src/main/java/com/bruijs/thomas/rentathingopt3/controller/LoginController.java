@@ -32,6 +32,6 @@ public class LoginController {
     }
 
     private void showMenuVenster(Medewerker medewerker) throws IOException {
-        SceneController.showMenuScene(new Stage(), medewerker);
+        SceneController.showScene(SceneController.MENU_VIEW_PATH, SceneController.MENU_VIEW_TITLE, new Stage(), medewerker);
     }
 }

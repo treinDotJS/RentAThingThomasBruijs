@@ -27,7 +27,7 @@ public class OverzichtController implements SetMedewerker{
     }
 
     private void initialize() {
-        productListView.setItems(FXCollections.observableArrayList(ProductMagazijn.producten));
+        productListView.setItems(FXCollections.observableArrayList(ProductMagazijn.huidigMagazijn.getProducten()));
     }
 
     @FXML

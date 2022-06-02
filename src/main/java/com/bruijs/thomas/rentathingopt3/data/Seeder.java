@@ -23,20 +23,20 @@ public class Seeder {
     }
 
     private static void seedVrachtauto() {
-        ProductMagazijn.producten.add(new Vrachtauto(1000, 2500));
-        ProductMagazijn.producten.add(new Vrachtauto(400, 1200));
-        ProductMagazijn.producten.add(new Vrachtauto(2000, 3500));
+        ProductMagazijn.huidigMagazijn.addProduct(new Vrachtauto(1000, 2500));
+        ProductMagazijn.huidigMagazijn.addProduct(new Vrachtauto(400, 1200));
+        ProductMagazijn.huidigMagazijn.addProduct(new Vrachtauto(2000, 3500));
     }
 
     private static void seedPersonenauto() {
-        ProductMagazijn.producten.add(new Personenauto("Tesla", 2500));
-        ProductMagazijn.producten.add(new Personenauto("BMW", 2300));
-        ProductMagazijn.producten.add(new Personenauto("Volkswagen", 3000));
+        ProductMagazijn.huidigMagazijn.addProduct(new Personenauto("Tesla", 2500));
+        ProductMagazijn.huidigMagazijn.addProduct(new Personenauto("BMW", 2300));
+        ProductMagazijn.huidigMagazijn.addProduct(new Personenauto("Volkswagen", 3000));
     }
 
     private static void seedBoormachine() {
-        ProductMagazijn.producten.add(new Boormachine("Parkside", "X100"));
-        ProductMagazijn.producten.add(new Boormachine("Bosch", "RRR3000"));
-        ProductMagazijn.producten.add(new Boormachine("BRRRRR", "Skirt"));
+        ProductMagazijn.huidigMagazijn.addProduct(new Boormachine("Parkside", "X100"));
+        ProductMagazijn.huidigMagazijn.addProduct(new Boormachine("Bosch", "RRR3000"));
+        ProductMagazijn.huidigMagazijn.addProduct(new Boormachine("BRRRRR", "Skirt"));
     }
 }

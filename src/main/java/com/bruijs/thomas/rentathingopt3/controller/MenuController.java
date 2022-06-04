@@ -21,8 +21,9 @@ public class MenuController implements SetMedewerker {
     }
 
     @FXML
-    void showBeheer(ActionEvent event) {
-
+    void showBeheer(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
+        SceneController.showScene(SceneController.BEHEER_VIEW_PATH, SceneController.BEHEER_VIEW_TITLE, currentStage, medewerker);
     }
 
     @FXML

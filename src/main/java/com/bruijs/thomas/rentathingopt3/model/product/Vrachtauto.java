@@ -3,12 +3,14 @@ package com.bruijs.thomas.rentathingopt3.model.product;
 import java.time.LocalDate;
 
 public class Vrachtauto extends Product {
-    private final int laadvermogen, gewicht;
+    private int laadvermogen, gewicht;
 
     public Vrachtauto(int laadvermogen, int gewicht) {
         this.laadvermogen = laadvermogen;
         this.gewicht = gewicht;
     }
+
+    public Vrachtauto() {}
 
     @Override
     double berekenHuur(LocalDate startDatum, LocalDate eindDatum, boolean isVerzekerd) {
@@ -18,12 +20,59 @@ public class Vrachtauto extends Product {
         return huurPrijs;
     }
 
+    @Override
+    public String getDetail1Name() {
+        return "Laadvermogen (kg)";
+    }
+
+    @Override
+    public String getDetail2Name() {
+        return "Gewicht (kg)";
+    }
+
+    @Override
+    public void setDetail1(String value) {
+        try {
+            this.gewicht = Integer.parseInt(value);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Voer een decimaal getal in");
+        }
+    }
+
+    @Override
+    public void setDetail2(String value) {
+        try {
+            this.laadvermogen = Integer.parseInt(value);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Voer een decimaal getal in");
+        }
+    }
+
+    @Override
+    String getAlleInfo() {
+        return String.format(
+                "Laadvermogen: %d\n" +
+                "Gewicht: %d\n",
+                laadvermogen, gewicht
+        );
+    }
+
     public int getLaadvermogen() {
         return laadvermogen;
     }
 
     public int getGewicht() {
         return gewicht;
+    }
+
+    public void setLaadvermogen(int laadvermogen) {
+        this.laadvermogen = laadvermogen;
+    }
+
+    public void setGewicht(int gewicht) {
+        this.gewicht = gewicht;
     }
 
     @Override

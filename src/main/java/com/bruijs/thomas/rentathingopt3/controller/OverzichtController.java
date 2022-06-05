@@ -40,9 +40,10 @@ public class OverzichtController implements Observer, SetMedewerker{
     }
 
     @FXML
-    void showDetails(ActionEvent event) {
+    void showDetails(ActionEvent event) throws IOException {
         Product product = productListView.getSelectionModel().getSelectedItem();
-        System.out.println(product);
+        Stage stage = (Stage) ((Control) event.getSource()).getScene().getWindow();
+        SceneController.showScene(SceneController.DETAIL_VIEW_PATH, SceneController.DETAIL_VIEW_TITLE, stage, medewerker, product);
     }
 
     @Override

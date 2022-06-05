@@ -5,7 +5,7 @@ import com.bruijs.thomas.rentathingopt3.model.product.Product;
 
 import java.util.ArrayList;
 
-public class ProductMagazijn {
+public class ProductMagazijn implements Observer {
     public static ProductMagazijn huidigMagazijn = new ProductMagazijn();
     private ArrayList<Product> producten = new ArrayList<>();
     private ArrayList<Observer> observers = new ArrayList<>();
@@ -21,6 +21,7 @@ public class ProductMagazijn {
 
     public void addProduct(Product product) {
         producten.add(product);
+        product.attach(this);
         setState();
     }
 
@@ -35,5 +36,10 @@ public class ProductMagazijn {
 
     public ArrayList<Product> getProducten() {
         return producten;
+    }
+
+    @Override
+    public void update() {
+        setState();
     }
 }

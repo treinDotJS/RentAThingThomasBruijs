@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bruijs.thomas.rentathingopt3.controller.DetailController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bruijs.thomas.rentathingopt3.controller.DetailController">
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
@@ -32,6 +32,8 @@
                <children>
                   <Label fx:id="klantLabel" text="Klant: Thomas Bruijs" />
                   <Label fx:id="werknemerLabel" text="Werknemer: Milana" />
+                  <Label fx:id="verzekerdLabel" text="Verzekerd: Nee" />
+                  <Label fx:id="huurprijsRetLabel" text="Huurprijs: €69,44 per dag" />
                   <HBox alignment="CENTER" spacing="10.0">
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -47,18 +49,23 @@
                <children>
                   <Label fx:id="huurprijsLabel" text="Huurprijs: €30,35 per dag" />
                   <CheckBox fx:id="verzekerCheckBox" mnemonicParsing="false" text="Verzekeren" />
-                  <Label prefHeight="18.0" prefWidth="152.0" text="Naam klant:">
+                  <Label prefHeight="18.0" prefWidth="152.0" text="Klantgegevens:">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="klantTextField" />
+                  <TextField fx:id="voornaamField" promptText="Voornaam" />
+                  <TextField fx:id="achternaamField" layoutX="10.0" layoutY="74.0" promptText="Achternaam">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
                   <HBox alignment="CENTER" spacing="10.0">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                      <children>
-                        <Button mnemonicParsing="false" onAction="#verhuur" prefWidth="65.0" text="Verhuur" />
+                        <Button fx:id="verhuurButton" mnemonicParsing="false" onAction="#verhuur" prefWidth="65.0" text="Verhuur" />
                         <Button mnemonicParsing="false" onAction="#previousScene" prefWidth="65.0" text="Terug" />
                      </children>
                   </HBox>

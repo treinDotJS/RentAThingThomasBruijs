@@ -5,7 +5,6 @@ import com.bruijs.thomas.rentathingopt3.model.Medewerker;
 import com.bruijs.thomas.rentathingopt3.model.Observer;
 import com.bruijs.thomas.rentathingopt3.model.product.detail.Detail;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Product implements Observer {

@@ -1,4 +1,4 @@
-module com.bruijs.thomas.rentathingopt3 {
+module com.bruijs.thomas.rentathingopt {
     requires javafx.controls;
     requires javafx.fxml;
 

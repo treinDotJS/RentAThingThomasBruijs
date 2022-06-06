@@ -6,19 +6,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="360.0" spacing="10.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bruijs.thomas.rentathingopt3.controller.MenuController">
-   <children>
-      <Label text="Menu">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Button mnemonicParsing="false" onAction="#showOverzicht" prefHeight="40.0" prefWidth="150.0" text="Overzicht" />
-      <Button mnemonicParsing="false" onAction="#showBeheer" prefHeight="40.0" prefWidth="150.0" text="Beheer" />
-      <Button mnemonicParsing="false" onAction="#logOut" prefHeight="40.0" prefWidth="150.0" text="Uitloggen" />
-      <Label fx:id="medewerkerLabel" text="Medewerker: Thomas" />
-   </children>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="300.0" prefWidth="360.0" spacing="10.0" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bruijs.thomas.rentathingopt3.controller.MenuController">
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
    </padding>
+   <Label text="Menu">
+      <font>
+         <Font size="24.0"/>
+      </font>
+   </Label>
+   <Button mnemonicParsing="false" onAction="#showOverzicht" prefHeight="40.0" prefWidth="150.0" text="Overzicht"/>
+   <Button mnemonicParsing="false" onAction="#showBeheer" prefHeight="40.0" prefWidth="150.0" text="Beheer"/>
+   <Button mnemonicParsing="false" onAction="#logOut" prefHeight="40.0" prefWidth="150.0" text="Uitloggen"/>
+   <Label fx:id="medewerkerLabel" text="Medewerker: Thomas"/>
 </VBox>

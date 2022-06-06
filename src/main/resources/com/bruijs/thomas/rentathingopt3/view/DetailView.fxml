@@ -39,7 +39,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                      <children>
-                        <Button minWidth="65.0" mnemonicParsing="false" onAction="#retour" text="Retour" />
+                        <Button minWidth="65.0" mnemonicParsing="false" onAction="#retourBtnClick" text="Retour" />
                         <Button mnemonicParsing="false" onAction="#previousScene" prefWidth="65.0" text="Terug" />
                      </children>
                   </HBox>
@@ -65,7 +65,7 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                      <children>
-                        <Button fx:id="verhuurButton" mnemonicParsing="false" onAction="#verhuur" prefWidth="65.0" text="Verhuur" />
+                        <Button fx:id="verhuurButton" mnemonicParsing="false" onAction="#verhuurBtnClick" prefWidth="65.0" text="Verhuur" />
                         <Button mnemonicParsing="false" onAction="#previousScene" prefWidth="65.0" text="Terug" />
                      </children>
                   </HBox>

@@ -7,17 +7,17 @@ import com.bruijs.thomas.rentathingopt3.model.product.Vrachtauto;
 
 public class UnlabeledProductFactory extends ProductFactory {
     @Override
-    Product createBoormachine() {
+    public Product createBoormachine() {
         return new Boormachine();
     }
 
     @Override
-    Product createPersonenauto() {
+    public Product createPersonenauto() {
         return new Personenauto();
     }
 
     @Override
-    Product createVrachtauto() {
+    public Product createVrachtauto() {
         return new Vrachtauto();
     }
 }

@@ -16,13 +16,10 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class BeheerController implements SetMedewerker {
-    private final String[] PRODUCT_TYPES = new String[]{"Boormachine", "Personenauto", "Vrachtauto"};
     private String previousSelectedString = null;
-    public Medewerker medewerker;
-
+    private Medewerker medewerker;
     @FXML
     private ListView<String> productListView;
-
     @FXML
     private Button toevoegenBtn;
 
@@ -32,32 +29,15 @@ public class BeheerController implements SetMedewerker {
     }
 
     private void showToevoegVenster() throws IOException {
-        String productType = productListView.getSelectionModel().getSelectedItem();
-        ProductFactory productFactory = new UnlabeledProductFactory();
-        Product product = productFactory.createProduct(productType);
+        Product product =  getSelectedProduct();
         Stage stage = (Stage) productListView.getScene().getWindow();
         SceneController.showScene(SceneController.TOEVOEG_VIEW_PATH, SceneController.TOEVOEG_VIEW_TITLE, stage, medewerker, product);
     }
 
-    @FXML
-    void previousScene(ActionEvent event) throws IOException {
-        Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-        SceneController.showScene(SceneController.MENU_VIEW_PATH, SceneController.MENU_VIEW_TITLE, currentStage, medewerker);
-    }
-
-    @Override
-    public void setMedewerker(Medewerker medewerker) {
-        this.medewerker = medewerker;
-        initialize();
-    }
-
-    private void initialize() {
-        toevoegenBtn.setDisable(true);
-        productListView.getSelectionModel().selectedItemProperty().addListener(
-                (observableValue, s, t1) -> toevoegenBtn.setDisable(t1 == null)
-        );
-        productListView.setOnMouseClicked(mouseEvent -> setDoubleClick());
-        productListView.setItems(FXCollections.observableArrayList(PRODUCT_TYPES));
+    private Product getSelectedProduct() {
+        String productType = productListView.getSelectionModel().getSelectedItem();
+        ProductFactory productFactory = new UnlabeledProductFactory();
+        return productFactory.createProduct(productType);
     }
 
     private void setDoubleClick() {
@@ -69,5 +49,26 @@ public class BeheerController implements SetMedewerker {
                 throw new RuntimeException(e);
             }
         } else previousSelectedString = newSelectedString;
+    }
+
+    private void initialize() {
+        toevoegenBtn.setDisable(true);
+        productListView.getSelectionModel().selectedItemProperty().addListener(
+                (observableValue, oldValue, newValue) -> toevoegenBtn.setDisable(newValue == null)
+        );
+        productListView.setOnMouseClicked(mouseEvent -> setDoubleClick());
+        productListView.setItems(FXCollections.observableArrayList(Product.PRODUCT_TYPES));
+    }
+
+    @Override
+    public void setMedewerker(Medewerker medewerker) {
+        this.medewerker = medewerker;
+        initialize();
+    }
+
+    @FXML
+    void previousScene(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
+        SceneController.showScene(SceneController.MENU_VIEW_PATH, SceneController.MENU_VIEW_TITLE, currentStage, medewerker);
     }
 }

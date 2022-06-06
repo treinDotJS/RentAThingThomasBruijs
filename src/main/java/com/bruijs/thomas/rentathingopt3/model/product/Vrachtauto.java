@@ -39,9 +39,8 @@ public class Vrachtauto extends Product {
     public void setDetail1(String value) {
         try {
             this.gewicht = Integer.parseInt(value);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Voer een decimaal getal in");
+        } catch (NumberFormatException e) {
+            System.out.println("Voer een decimaal getal in bij "+getDetail1Name());
         }
     }
 
@@ -49,9 +48,8 @@ public class Vrachtauto extends Product {
     public void setDetail2(String value) {
         try {
             this.laadvermogen = Integer.parseInt(value);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Voer een decimaal getal in");
+        } catch (NumberFormatException e) {
+            System.out.println("Voer een decimaal getal in bij "+getDetail2Name());
         }
     }
 

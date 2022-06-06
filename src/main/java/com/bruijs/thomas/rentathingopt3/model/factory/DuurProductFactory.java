@@ -7,17 +7,17 @@ import com.bruijs.thomas.rentathingopt3.model.product.Vrachtauto;
 
 public class DuurProductFactory extends ProductFactory {
     @Override
-    Product createBoormachine() {
+    public Product createBoormachine() {
         return new Boormachine("SPERO", "SPB1004P");
     }
 
     @Override
-    Product createPersonenauto() {
+    public Product createPersonenauto() {
         return new Personenauto("Ferrari", 800);
     }
 
     @Override
-    Product createVrachtauto() {
+    public Product createVrachtauto() {
         return new Vrachtauto(45000,4000);
     }
 }

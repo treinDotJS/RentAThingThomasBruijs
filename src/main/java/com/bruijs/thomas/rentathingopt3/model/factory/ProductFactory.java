@@ -11,7 +11,7 @@ public abstract class ProductFactory {
             default -> null;
         };
     }
-    abstract Product createBoormachine();
-    abstract Product createPersonenauto();
-    abstract Product createVrachtauto();
+    public abstract Product createBoormachine();
+    public abstract Product createPersonenauto();
+    public abstract Product createVrachtauto();
 }

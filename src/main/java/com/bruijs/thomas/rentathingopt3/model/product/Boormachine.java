@@ -2,8 +2,6 @@ package com.bruijs.thomas.rentathingopt3.model.product;
 
 import com.bruijs.thomas.rentathingopt3.model.product.detail.StringDetail;
 
-import java.time.LocalDate;
-
 public class Boormachine extends Product {
     public Boormachine(String merk, String type) {
         this.addDetail(new StringDetail("Merk", merk));
@@ -29,9 +27,4 @@ public class Boormachine extends Product {
         return huurPrijs;
     }
 
-    @Override
-    public double berekenHuur(LocalDate startDatum, LocalDate eindDatum, boolean isVerzekerd) {
-        int aantalDagen = startDatum.compareTo(eindDatum);
-        return berekenHuur(aantalDagen, isVerzekerd);
-    }
 }

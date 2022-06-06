@@ -15,7 +15,6 @@ public abstract class Product implements Observer {
     protected ArrayList<Detail> details = new ArrayList<>();
 
     public abstract double berekenHuur(int aantalDagen, boolean isVerzekerd);
-    public abstract double berekenHuur(LocalDate startDatum, LocalDate eindDatum, boolean isVerzekerd);
 
     protected void addDetail(Detail detail) {
         this.details.add(detail);

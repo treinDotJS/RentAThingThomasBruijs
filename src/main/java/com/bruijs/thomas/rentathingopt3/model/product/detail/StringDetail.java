@@ -24,5 +24,6 @@ public class StringDetail extends Detail {
 
     public void setValue(String value) {
         this.value = value;
+        setState();
     }
 }

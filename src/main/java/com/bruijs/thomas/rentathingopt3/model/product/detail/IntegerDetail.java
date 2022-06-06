@@ -14,6 +14,7 @@ public class IntegerDetail extends Detail {
 
     public void setValue(Integer value) {
         this.value = value;
+        setState();
     }
 
     @Override

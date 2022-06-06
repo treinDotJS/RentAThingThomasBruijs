@@ -14,12 +14,16 @@ public class Personenauto extends Product {
     public Personenauto() {}
 
     @Override
-    double berekenHuur(LocalDate startDatum, LocalDate eindDatum, boolean isVerzekerd) {
-        int aantalDagen = startDatum.compareTo(eindDatum);
-
+    public double berekenHuur(int aantalDagen, boolean isVerzekerd) {
         double huurPrijs = 50 * aantalDagen;
         if (isVerzekerd) huurPrijs += 0.01 * this.gewicht * aantalDagen;
         return huurPrijs;
+    }
+
+    @Override
+    public double berekenHuur(LocalDate startDatum, LocalDate eindDatum, boolean isVerzekerd) {
+        int aantalDagen = startDatum.compareTo(eindDatum);
+        return berekenHuur(aantalDagen, isVerzekerd);
     }
 
     @Override
@@ -48,11 +52,14 @@ public class Personenauto extends Product {
     }
 
     @Override
-    String getAlleInfo() {
+    public String getAllDetails() {
         return String.format(
-                "Merk: %s\n"+
-                "Gewicht: %d\n",
-                merk, gewicht
+                "Product: %s\n" +
+                "%s: %s\n" +
+                "%s: %d",
+                getClass().getSimpleName(),
+                getDetail1Name(), merk,
+                getDetail2Name(), gewicht
         );
     }
 

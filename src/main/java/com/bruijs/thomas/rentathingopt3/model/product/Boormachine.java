@@ -13,12 +13,16 @@ public class Boormachine extends Product {
     public Boormachine() {}
 
     @Override
-    double berekenHuur(LocalDate startDatum, LocalDate eindDatum, boolean isVerzekerd) {
-        int aantalDagen = startDatum.compareTo(eindDatum);
-
+    public double berekenHuur(int aantalDagen, boolean isVerzekerd) {
         int huurPrijs = 5 * aantalDagen;
         if (isVerzekerd) huurPrijs += aantalDagen;
         return huurPrijs;
+    }
+
+    @Override
+    public double berekenHuur(LocalDate startDatum, LocalDate eindDatum, boolean isVerzekerd) {
+        int aantalDagen = startDatum.compareTo(eindDatum);
+        return berekenHuur(aantalDagen, isVerzekerd);
     }
 
     @Override
@@ -42,11 +46,14 @@ public class Boormachine extends Product {
     }
 
     @Override
-    String getAlleInfo() {
+    public String getAllDetails() {
         return String.format(
-                "Merk: %s\n" +
-                "Type: %s\n",
-                merk, type
+                "Product: %s\n" +
+                "%s: %s\n" +
+                "%s: %s",
+                getClass().getSimpleName(),
+                getDetail1Name(), merk,
+                getDetail2Name(), type
         );
     }
 

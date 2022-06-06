@@ -19,6 +19,8 @@ public class SceneController {
     public static final String BEHEER_VIEW_TITLE = "Beheer: %s";
     public static final String TOEVOEG_VIEW_PATH = "/com/bruijs/thomas/rentathingopt3/view/ToevoegView.fxml";
     public static final String TOEVOEG_VIEW_TITLE = "Toevoegvenster: %s";
+    public static final String DETAIL_VIEW_PATH = "/com/bruijs/thomas/rentathingopt3/view/DetailView.fxml";
+    public static final String DETAIL_VIEW_TITLE = "Detailvenster: %s";
 
     public static void showScene(String scenePath, String title, Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(scenePath));

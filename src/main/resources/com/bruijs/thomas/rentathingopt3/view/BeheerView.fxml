@@ -22,7 +22,7 @@
       <ListView fx:id="productListView" prefHeight="200.0" prefWidth="300.0" />
       <HBox alignment="CENTER" spacing="50.0">
          <children>
-            <Button fx:id="toevoegenBtn" minWidth="75.0" mnemonicParsing="false" onAction="#nieuwProduct" text="Toevoegen" />
+            <Button fx:id="toevoegenBtn" minWidth="75.0" mnemonicParsing="false" onAction="#onToevoegenBtnClick" text="Toevoegen" />
             <Button minWidth="75.0" mnemonicParsing="false" onAction="#previousScene" text="Terug" />
          </children>
       </HBox>

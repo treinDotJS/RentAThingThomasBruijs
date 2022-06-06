@@ -23,16 +23,16 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <VBox prefWidth="100.0">
+      <VBox fx:id="detailsBox" prefWidth="100.0" spacing="5.0">
          <children>
-            <Label fx:id="detail1Label" text="Detail1" />
-            <TextField fx:id="detail1Field">
+            <Label text="Detail1" />
+            <TextField>
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </TextField>
-            <Label fx:id="detail2Label" text="Detail2" />
-            <TextField fx:id="detail2Field" />
+            <Label text="Detail2" />
+            <TextField />
          </children></VBox>
       <HBox alignment="CENTER" minWidth="200.0" spacing="20.0">
          <children>

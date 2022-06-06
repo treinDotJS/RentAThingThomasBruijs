@@ -21,7 +21,7 @@
       <ListView fx:id="productListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" />
       <HBox alignment="CENTER" spacing="50.0">
          <children>
-            <Button fx:id="detailsBtn" minWidth="60.0" mnemonicParsing="false" onAction="#showDetails" text="Details" />
+            <Button fx:id="detailsBtn" minWidth="60.0" mnemonicParsing="false" onAction="#onDetailBtnClick" text="Details" />
             <Button minWidth="60.0" mnemonicParsing="false" onAction="#previousScene" text="Terug" />
          </children>
       </HBox>

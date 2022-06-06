@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class Product implements Observer {
+    public static final String[] PRODUCT_TYPES = {"Boormachine", "Personenauto", "Vrachtauto"};
     private Verhuur verhuur = null;
     private ArrayList<Observer> observers = new ArrayList<>();
     protected ArrayList<Detail> details = new ArrayList<>();

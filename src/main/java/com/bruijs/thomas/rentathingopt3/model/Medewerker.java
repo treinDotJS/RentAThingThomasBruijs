@@ -27,4 +27,9 @@ public class Medewerker {
     public void setActive(boolean active) {
         isActive = active;
     }
+
+    @Override
+    public String toString() {
+        return "Medewerker: "+gebruikersnaam;
+    }
 }

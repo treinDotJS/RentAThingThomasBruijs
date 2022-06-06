@@ -27,39 +27,9 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
     @FXML
     private Button verhuurButton;
 
-    @Override
-    public void setMedewerker(Medewerker medewerker) {
-        this.medewerker = medewerker;
-    }
-
-    @Override
-    public void setProduct(Product product) {
-        this.product = product;
-        initialize();
-    }
-
-    private void initialize() {
-        product.attach(this);
-        voornaamField.textProperty().addListener((observableValue, s, t1) -> checkIfValidVerhuur());
-        achternaamField.textProperty().addListener((observableValue, s, t1) -> checkIfValidVerhuur());
-        verzekerCheckBox.selectedProperty().addListener((observableValue, aBoolean, t1) -> setHuurprijs(huurprijsLabel, verzekerCheckBox.isSelected()));
-        update();
-    }
-
-    @Override
-    public void update() {
-        setDetails();
-        if (product.isOpVoorraad()) {
-            showVerhuur();
-        } else {
-            showRetour();
-        }
-    }
-
     private void setDetails() {
         detailsLabel.setText(product.getAllDetails());
         verhuurdLabel.setText("Verhuurd: "+(product.isOpVoorraad() ? "Nee":"Ja"));
-
 
         setVerhuurDetails();
         setRetourDetails();
@@ -76,8 +46,8 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
     private void setRetourDetails() {
         Verhuur verhuur = product.getVerhuur();
         if (verhuur != null) {
-            klantLabel.setText(String.format("Klant: %s %s", verhuur.klant().voornaam(), verhuur.klant().achternaam()));
-            werknemerLabel.setText("Werknemer: " + verhuur.medewerker().getGebruikersnaam());
+            klantLabel.setText(String.valueOf(verhuur.klant()));
+            werknemerLabel.setText(String.valueOf(verhuur.medewerker()));
             verzekerdLabel.setText("Verzekerd: " + (verhuur.verzekerd() ? "Ja" : "Nee"));
             setHuurprijs(huurprijsRetLabel, verhuur.verzekerd());
         }
@@ -100,20 +70,24 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
     }
 
     @FXML
-    void retour(ActionEvent event) {
+    void retourBtnClick(ActionEvent event) {
         product.retour();
     }
 
     @FXML
-    void verhuur(ActionEvent event) {
-        Klant klant = new Klant(voornaamField.getText(), achternaamField.getText());
+    void verhuurBtnClick(ActionEvent event) {
+        Klant klant = new Klant(voornaamField.getText().trim(), achternaamField.getText().trim());
         product.verhuur(klant, medewerker, verzekerCheckBox.isSelected());
     }
 
-    @FXML
-    void previousScene(ActionEvent event) throws IOException {
-        Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-        SceneController.showScene(SceneController.OVERZICHT_VIEW_PATH, SceneController.OVERZICHT_VIEW_TITLE, currentStage, medewerker);
+    @Override
+    public void update() {
+        setDetails();
+        if (product.isOpVoorraad()) {
+            showVerhuur();
+        } else {
+            showRetour();
+        }
     }
 
     public void checkIfValidVerhuur() {
@@ -121,5 +95,30 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
         int achternaamLength = achternaamField.getText().trim().length();
 
         verhuurButton.setDisable(!(voornaamLength>0&&achternaamLength>0));
+    }
+
+    @Override
+    public void setMedewerker(Medewerker medewerker) {
+        this.medewerker = medewerker;
+    }
+
+    @Override
+    public void setProduct(Product product) {
+        this.product = product;
+        initialize();
+    }
+
+    private void initialize() {
+        product.attach(this);
+        voornaamField.textProperty().addListener((observableValue, s, t1) -> checkIfValidVerhuur());
+        achternaamField.textProperty().addListener((observableValue, s, t1) -> checkIfValidVerhuur());
+        verzekerCheckBox.selectedProperty().addListener((observableValue, aBoolean, t1) -> setHuurprijs(huurprijsLabel, verzekerCheckBox.isSelected()));
+        update();
+    }
+
+    @FXML
+    void previousScene(ActionEvent event) throws IOException {
+        Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
+        SceneController.showScene(SceneController.OVERZICHT_VIEW_PATH, SceneController.OVERZICHT_VIEW_TITLE, currentStage, medewerker);
     }
 }

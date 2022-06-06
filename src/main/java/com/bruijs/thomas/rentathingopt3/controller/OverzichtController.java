@@ -2,6 +2,8 @@ package com.bruijs.thomas.rentathingopt3.controller;
 
 import com.bruijs.thomas.rentathingopt3.data.ProductMagazijn;
 import com.bruijs.thomas.rentathingopt3.model.Medewerker;
+import com.bruijs.thomas.rentathingopt3.model.Observer;
+import com.bruijs.thomas.rentathingopt3.model.factory.ProductFactory;
 import com.bruijs.thomas.rentathingopt3.model.product.Product;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -13,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class OverzichtController implements SetMedewerker{
+public class OverzichtController implements Observer, SetMedewerker{
     private Medewerker medewerker;
     @FXML
     private ListView<Product> productListView;
@@ -27,7 +29,8 @@ public class OverzichtController implements SetMedewerker{
     }
 
     private void initialize() {
-        productListView.setItems(FXCollections.observableArrayList(ProductMagazijn.huidigMagazijn.getProducten()));
+        ProductMagazijn.huidigMagazijn.attach(this);
+        update();
     }
 
     @FXML
@@ -37,8 +40,14 @@ public class OverzichtController implements SetMedewerker{
     }
 
     @FXML
-    void showDetails(ActionEvent event) {
+    void showDetails(ActionEvent event) throws IOException {
         Product product = productListView.getSelectionModel().getSelectedItem();
-        System.out.println(product);
+        Stage stage = (Stage) ((Control) event.getSource()).getScene().getWindow();
+        SceneController.showScene(SceneController.DETAIL_VIEW_PATH, SceneController.DETAIL_VIEW_TITLE, stage, medewerker, product);
+    }
+
+    @Override
+    public void update() {
+        productListView.setItems(FXCollections.observableArrayList(ProductMagazijn.huidigMagazijn.getProducten()));
     }
 }

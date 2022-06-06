@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Medewerker {
     public static ArrayList<Medewerker> medewerkers = new ArrayList<>();
     private final String gebruikersnaam, wachtwoord;
+    private boolean isActive = false;
 
     public Medewerker(String gebruikersnaam, String wachtwoord) {
         this.gebruikersnaam = gebruikersnaam;
@@ -17,5 +18,13 @@ public class Medewerker {
 
     public String getWachtwoord() {
         return wachtwoord;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

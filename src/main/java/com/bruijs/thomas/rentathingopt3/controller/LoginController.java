@@ -1,15 +1,16 @@
 package com.bruijs.thomas.rentathingopt3.controller;
 
 import com.bruijs.thomas.rentathingopt3.model.Medewerker;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,7 +34,22 @@ public class LoginController implements Initializable {
         String username = usernameField.getText();
         String password = passwordField.getText();
         Medewerker medewerker = authenticateMedewerker(username, password);
-        if(medewerker != null) showMenuVenster(medewerker);
+        if(medewerker == null) showErrorDialog("De gebruikersnaam en/of het wachtwoord klopt niet.");
+        else if (medewerker.isActive()) showErrorDialog("Deze gebruiker is al actief.");
+        else {
+            resetControls();
+            medewerker.setActive(true);
+            showMenuVenster(medewerker);
+        }
+    }
+
+    private void showErrorDialog(String description) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Ongeldige login");
+        alert.setHeaderText("Ongeldige login!");
+        alert.setContentText(description);
+
+        alert.showAndWait();
     }
 
     private Medewerker authenticateMedewerker(String username, String password) {
@@ -44,7 +60,10 @@ public class LoginController implements Initializable {
     }
 
     private void showMenuVenster(Medewerker medewerker) throws IOException {
-        SceneController.showScene(SceneController.MENU_VIEW_PATH, SceneController.MENU_VIEW_TITLE, new Stage(), medewerker);
+        Stage stage = new Stage();
+        stage.setOnCloseRequest(windowEvent -> stage.close());
+        stage.setOnHidden(windowEvent -> medewerker.setActive(false));
+        SceneController.showScene(SceneController.MENU_VIEW_PATH, SceneController.MENU_VIEW_TITLE, stage, medewerker);
     }
 
     @Override

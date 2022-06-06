@@ -23,7 +23,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <VBox fx:id="detailsBox" prefWidth="100.0">
+      <VBox prefWidth="100.0">
          <children>
             <Label fx:id="detail1Label" text="Detail1" />
             <TextField fx:id="detail1Field">
@@ -36,7 +36,7 @@
          </children></VBox>
       <HBox alignment="CENTER" minWidth="200.0" spacing="20.0">
          <children>
-            <Button minWidth="78.0" mnemonicParsing="false" onAction="#toevoegenBtnClick" text="Toevoegen" />
+            <Button fx:id="toevoegenBtn" minWidth="78.0" mnemonicParsing="false" onAction="#onToevoegenBtnClick" text="Toevoegen" />
             <Button minWidth="78.0" mnemonicParsing="false" onAction="#terugButtonClick" text="Terug" />
          </children>
       </HBox>

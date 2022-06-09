@@ -3,6 +3,7 @@ package com.bruijs.thomas.rentathingopt3.controller;
 import com.bruijs.thomas.rentathingopt3.model.Klant;
 import com.bruijs.thomas.rentathingopt3.model.Medewerker;
 import com.bruijs.thomas.rentathingopt3.model.Observer;
+import com.bruijs.thomas.rentathingopt3.model.node.DetailsBox;
 import com.bruijs.thomas.rentathingopt3.model.product.Product;
 import com.bruijs.thomas.rentathingopt3.model.product.Verhuur;
 import javafx.event.ActionEvent;
@@ -17,18 +18,20 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
     private Medewerker medewerker;
     private Product product;
     @FXML
-    private Label verhuurdLabel, detailsLabel, huurprijsLabel, klantLabel, werknemerLabel, verzekerdLabel, huurprijsRetLabel;
+    private Label verhuurdLabel, huurprijsLabel, klantLabel, werknemerLabel, verzekerdLabel, huurprijsRetLabel;
     @FXML
     private TextField voornaamField, achternaamField;
     @FXML
     private VBox retourBox, verhuurBox;
+    @FXML
+    private DetailsBox detailsBox;
     @FXML
     private CheckBox verzekerCheckBox;
     @FXML
     private Button verhuurButton;
 
     private void setDetails() {
-        detailsLabel.setText(product.getAllDetails());
+        detailsBox.setDetails(product.getDetails());
         verhuurdLabel.setText("Verhuurd: "+(product.isOpVoorraad() ? "Nee":"Ja"));
 
         setVerhuurDetails();

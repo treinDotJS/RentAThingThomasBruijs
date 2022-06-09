@@ -4,11 +4,13 @@ import com.bruijs.thomas.rentathingopt3.model.product.detail.StringDetail;
 
 public class Boormachine extends Product {
     public Boormachine(String merk, String type) {
+        super();
         this.addDetail(new StringDetail("Merk", merk));
         this.addDetail(new StringDetail("Type", type));
     }
 
     public Boormachine() {
+        super();
         this.addDetail(new StringDetail("Merk", null));
         this.addDetail(new StringDetail("Type", null));
     }

@@ -4,14 +4,20 @@ import com.bruijs.thomas.rentathingopt3.model.Klant;
 import com.bruijs.thomas.rentathingopt3.model.Medewerker;
 import com.bruijs.thomas.rentathingopt3.model.Observer;
 import com.bruijs.thomas.rentathingopt3.model.product.detail.Detail;
+import com.bruijs.thomas.rentathingopt3.model.product.detail.StringDetail;
 
 import java.util.ArrayList;
 
 public abstract class Product implements Observer {
     public static final String[] PRODUCT_TYPES = {"Boormachine", "Personenauto", "Vrachtauto"};
+    private final StringDetail PRODUCT_TYPE = new StringDetail("Product", this.getClass().getSimpleName());
     private Verhuur verhuur = null;
     private ArrayList<Observer> observers = new ArrayList<>();
     protected ArrayList<Detail> details = new ArrayList<>();
+
+    public Product() {
+        details.add(PRODUCT_TYPE);
+    }
 
     public abstract double berekenHuur(int aantalDagen, boolean isVerzekerd);
 
@@ -28,22 +34,15 @@ public abstract class Product implements Observer {
         return details.get(index);
     }
 
-    public String getAllDetails() {
-        StringBuilder allDetails = new StringBuilder(String.format("Product: %s\n", getClass().getSimpleName()));
-        for (Detail detail : details)
-            allDetails.append(String.format("%s: %s\n", detail.getName(), detail.getValueAsString()));
-        return allDetails.toString();
-    }
-
-
     public boolean isOpVoorraad() {
         return verhuur == null;
     }
 
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder(String.format("| %s | Voorraad: %s | ", this.getClass().getSimpleName(), verhuur == null ? "Ja" : "Nee"));
-        for (Detail detail : details) {
+        StringBuilder string = new StringBuilder(String.format("| %s | Voorraad: %s | ", PRODUCT_TYPE.getValue(), verhuur == null ? "Ja" : "Nee"));
+        for (int i = 1; i < details.size(); i++) {
+            Detail detail = details.get(i);
             string.append(detail).append(" | ");
         }
         return string.toString();

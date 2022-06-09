@@ -5,11 +5,13 @@ import com.bruijs.thomas.rentathingopt3.model.product.detail.StringDetail;
 
 public class Personenauto extends Product {
     public Personenauto(String merk, int gewicht) {
+        super();
         this.addDetail(new StringDetail("Merk", merk));
         this.addDetail(new IntegerDetail("Gewicht(kg)", gewicht));
     }
 
     public Personenauto() {
+        super();
         this.addDetail(new StringDetail("Merk", null));
         this.addDetail(new IntegerDetail("Gewicht(kg)", null));
     }

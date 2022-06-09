@@ -6,7 +6,7 @@ public class BooleanDetail extends Detail {
     public static final int TRUE_FALSE = 0, JA_NEE = 1, WEL_NIET = 2, JUIST_ONJUIST = 3;
     private Boolean value;
     private int displayValue = 0;
-    protected BooleanDetail(String name, Boolean value) {
+    public BooleanDetail(String name, Boolean value) {
         super(name);
         this.value = value;
     }

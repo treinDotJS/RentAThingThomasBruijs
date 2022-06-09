@@ -26,7 +26,9 @@ public abstract class Detail {
     public void attach(Observer ob) {
         observers.add(ob);
     }
-
+    public void detach(Observer ob) {
+        observers.remove(ob);
+    }
     protected void setState() {
         for (Observer ob : observers)
             ob.update();

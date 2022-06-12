@@ -23,32 +23,36 @@ public class SceneController {
     public static final String DETAIL_VIEW_TITLE = "Detailvenster: %s";
 
     public static void showScene(String scenePath, String title, Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(scenePath));
+        FXMLLoader fxmlLoader = getFxmlLoader(scenePath);
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle(title);
-        stage.setScene(scene);
-        stage.show();
+        setAndShowStage(title, stage, scene);
     }
 
     public static void showScene(String scenePath, String title, Stage stage, Medewerker medewerker) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(scenePath));
+        FXMLLoader fxmlLoader = getFxmlLoader(scenePath);
 
         Scene scene = new Scene(fxmlLoader.load());
         setMedewerker(medewerker, fxmlLoader);
 
-        stage.setTitle(String.format(title, medewerker.getGebruikersnaam()));
-        stage.setScene(scene);
-        stage.show();
+        setAndShowStage(String.format(title, medewerker.getGebruikersnaam()), stage, scene);
     }
 
     public static void showScene(String scenePath, String title, Stage stage, Medewerker medewerker, Product product) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(scenePath));
+        FXMLLoader fxmlLoader = getFxmlLoader(scenePath);
 
         Scene scene = new Scene(fxmlLoader.load());
         setMedewerker(medewerker, fxmlLoader);
         setProduct(product, fxmlLoader);
 
-        stage.setTitle(String.format(title, medewerker.getGebruikersnaam()));
+        setAndShowStage(String.format(title, medewerker.getGebruikersnaam()), stage, scene);
+    }
+
+    private static FXMLLoader getFxmlLoader(String scenePath) {
+        return new FXMLLoader(SceneController.class.getResource(scenePath));
+    }
+
+    private static void setAndShowStage(String title, Stage stage, Scene scene) {
+        stage.setTitle(title);
         stage.setScene(scene);
         stage.show();
     }

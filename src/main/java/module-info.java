@@ -11,4 +11,6 @@ module com.bruijs.thomas.rentathingopt {
 
     opens com.bruijs.thomas.rentathingopt3.controller to javafx.fxml;
     exports com.bruijs.thomas.rentathingopt3.model.product;
+    exports com.bruijs.thomas.rentathingopt3.model.node;
+    opens com.bruijs.thomas.rentathingopt3.model.node to javafx.fxml;
 }

@@ -16,10 +16,10 @@ public class Vrachtauto extends Product {
     }
 
     public IntegerDetail getLaadvermogen() {
-        return (IntegerDetail) details.get(0);
+        return (IntegerDetail) details.get(1);
     }
     public IntegerDetail getGewicht() {
-        return (IntegerDetail) details.get(1);
+        return (IntegerDetail) details.get(2);
     }
 
     @Override

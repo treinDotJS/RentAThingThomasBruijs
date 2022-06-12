@@ -8,7 +8,11 @@ import com.bruijs.thomas.rentathingopt3.model.product.Product;
 import com.bruijs.thomas.rentathingopt3.model.product.Verhuur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -18,42 +22,46 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
     private Medewerker medewerker;
     private Product product;
     @FXML
-    private Label verhuurdLabel, huurprijsLabel, klantLabel, werknemerLabel, verzekerdLabel, huurprijsRetLabel;
+    private Label huurprijsLabel;
     @FXML
     private TextField voornaamField, achternaamField;
     @FXML
-    private VBox retourBox, verhuurBox;
+    private VBox verhuurBox, verhuurDetailsBox, productDetailsBox;
     @FXML
-    private DetailsBox detailsBox;
+    public HBox retourButtonBox;
     @FXML
     private CheckBox verzekerCheckBox;
     @FXML
     private Button verhuurButton;
 
-    private void setDetails() {
-        detailsBox.setDetails(product.getDetails());
-        verhuurdLabel.setText("Verhuurd: "+(product.isOpVoorraad() ? "Nee":"Ja"));
-
-        setVerhuurDetails();
-        setRetourDetails();
+    private void setBoxes() {
+        setProductDetailsBox();
+        setVerhuurDetailsBox();
+        setVerhuurBox();
     }
 
-    private void setVerhuurDetails() {
+    private void setVerhuurDetailsBox() {
+        verhuurDetailsBox.getChildren().clear();
+        DetailsBox dBox = new DetailsBox(Verhuur.getDetails(product.getVerhuur()));
+        dBox.setAlignment(Pos.CENTER);
+        Label isVerhuurdLabel = (Label) dBox.getChildren().get(0);
+        isVerhuurdLabel.setOpaqueInsets(new Insets(0,0,10,0));
+        verhuurDetailsBox.getChildren().add(dBox);
+    }
+
+    private void setProductDetailsBox() {
+        productDetailsBox.getChildren().clear();
+        DetailsBox dBox = new DetailsBox(product.getDetails());
+        dBox.setAlignment(Pos.CENTER);
+        productDetailsBox.getChildren().add(dBox);
+    }
+
+    private void setVerhuurBox() {
         verzekerCheckBox.setSelected(false);
         setHuurprijs(huurprijsLabel, false);
         voornaamField.clear();
         achternaamField.clear();
         verhuurButton.setDisable(true);
-    }
-
-    private void setRetourDetails() {
-        Verhuur verhuur = product.getVerhuur();
-        if (verhuur != null) {
-            klantLabel.setText(String.valueOf(verhuur.klant()));
-            werknemerLabel.setText(String.valueOf(verhuur.medewerker()));
-            verzekerdLabel.setText("Verzekerd: " + (verhuur.verzekerd() ? "Ja" : "Nee"));
-            setHuurprijs(huurprijsRetLabel, verhuur.verzekerd());
-        }
     }
 
     private void setHuurprijs(Label label, boolean isVerzekerd) {
@@ -64,12 +72,12 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
 
     private void showRetour() {
         verhuurBox.setVisible(false);
-        retourBox.setVisible(true);
+        retourButtonBox.setVisible(true);
     }
 
     private void showVerhuur() {
         verhuurBox.setVisible(true);
-        retourBox.setVisible(false);
+        retourButtonBox.setVisible(false);
     }
 
     @FXML
@@ -85,12 +93,9 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
 
     @Override
     public void update() {
-        setDetails();
-        if (product.isOpVoorraad()) {
-            showVerhuur();
-        } else {
-            showRetour();
-        }
+        setBoxes();
+        if (product.isOpVoorraad()) showVerhuur();
+        else showRetour();
     }
 
     public void checkIfValidVerhuur() {

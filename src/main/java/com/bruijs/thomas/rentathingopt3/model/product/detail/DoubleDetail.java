@@ -27,7 +27,8 @@ public class DoubleDetail extends Detail {
 
     @Override
     public String getValueAsString() {
-        return String.format("%."+aantalDecimalen+"d", value);
+        String format = "%." + aantalDecimalen + "f";
+        return String.format(format, value);
     }
 
     @Override

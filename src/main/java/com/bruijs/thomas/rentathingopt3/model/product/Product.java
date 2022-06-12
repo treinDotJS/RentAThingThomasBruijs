@@ -58,7 +58,7 @@ public abstract class Product implements Observer {
     }
 
     public void verhuur(Klant klant, Medewerker medewerker, boolean verzekerd) {
-        this.verhuur = new Verhuur(klant, medewerker, verzekerd);
+        this.verhuur = new Verhuur(this, klant, medewerker, verzekerd);
         setState();
     }
 

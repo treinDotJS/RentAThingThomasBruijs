@@ -16,10 +16,10 @@ public class Boormachine extends Product {
     }
 
     public StringDetail getMerk() {
-        return (StringDetail) details.get(0);
+        return (StringDetail) details.get(1);
     }
     public StringDetail getType() {
-        return (StringDetail) details.get(1);
+        return (StringDetail) details.get(2);
     }
 
     @Override

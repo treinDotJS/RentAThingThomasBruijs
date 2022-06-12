@@ -17,10 +17,10 @@ public class Personenauto extends Product {
     }
 
     public StringDetail getMerk() {
-        return (StringDetail) details.get(0);
+        return (StringDetail) details.get(1);
     }
     public IntegerDetail getGewicht() {
-        return (IntegerDetail) details.get(1);
+        return (IntegerDetail) details.get(2);
     }
 
     @Override

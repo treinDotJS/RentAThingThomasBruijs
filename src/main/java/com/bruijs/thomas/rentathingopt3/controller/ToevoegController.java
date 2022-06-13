@@ -96,16 +96,19 @@ public class ToevoegController implements SetMedewerker, SetProduct{
         for (int i = 0; i < details.size(); i++) {
             correctFields[i] = false;
             Detail detail = details.get(i);
-            Label label = new Label(detail.getName());
-            TextField field = new TextField();
-            final int index = i;
-            field.textProperty().addListener((observableValue, s, t1) -> {
-                correctFields[index] = t1.trim().length() > 0;
-                toevoegenBtn.setDisable(!checkCorrectInput());
-            });
-            VBox entry = new VBox(label, field);
+            VBox entry = createDetailField(i, detail);
             detailsBox.getChildren().add(entry);
         }
+    }
+
+    private VBox createDetailField(final int index, Detail detail) {
+        Label label = new Label(detail.getName());
+        TextField field = new TextField();
+        field.textProperty().addListener((observableValue, s, t1) -> {
+            correctFields[index] = t1.trim().length() > 0;
+            toevoegenBtn.setDisable(!checkCorrectInput());
+        });
+        return new VBox(label, field);
     }
 
     private boolean checkCorrectInput() {

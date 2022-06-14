@@ -54,7 +54,7 @@ public class OverzichtController implements Observer, SetMedewerker{
     @FXML
     void previousScene(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-        SceneController.showScene(SceneController.MENU_VIEW_PATH, SceneController.OVERZICHT_VIEW_TITLE, currentStage, medewerker);
+        SceneController.showScene(SceneController.MENU_VIEW, currentStage, medewerker);
     }
 
     @FXML
@@ -65,7 +65,7 @@ public class OverzichtController implements Observer, SetMedewerker{
     private void showDetails() throws IOException {
         Product product = productListView.getSelectionModel().getSelectedItem();
         Stage stage = (Stage) productListView.getScene().getWindow();
-        SceneController.showScene(SceneController.DETAIL_VIEW_PATH, SceneController.DETAIL_VIEW_TITLE, stage, medewerker, product);
+        SceneController.showScene(SceneController.DETAIL_VIEW, stage, medewerker, product);
     }
 
     @Override

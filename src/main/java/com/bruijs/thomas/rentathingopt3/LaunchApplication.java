@@ -10,7 +10,7 @@ import java.io.IOException;
 public class LaunchApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        SceneController.showScene(SceneController.LOGIN_VIEW_PATH, SceneController.LOGIN_VIEW_TITLE, stage);
+        SceneController.showScene(SceneController.LOGIN_VIEW, stage);
     }
 
     public static void main(String[] args) {

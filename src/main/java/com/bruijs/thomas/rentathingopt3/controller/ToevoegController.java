@@ -32,7 +32,7 @@ public class ToevoegController implements SetMedewerker, SetProduct{
     @FXML
     void terugButtonClick(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-        SceneController.showScene(SceneController.BEHEER_VIEW_PATH, SceneController.BEHEER_VIEW_TITLE, currentStage, medewerker);
+        SceneController.showScene(SceneController.BEHEER_VIEW, currentStage, medewerker);
     }
 
     @FXML
@@ -41,7 +41,7 @@ public class ToevoegController implements SetMedewerker, SetProduct{
             bindValues();
             ProductMagazijn.huidigMagazijn.addProduct(product);
             Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-            SceneController.showScene(SceneController.BEHEER_VIEW_PATH, SceneController.BEHEER_VIEW_TITLE, currentStage, medewerker);
+            SceneController.showScene(SceneController.BEHEER_VIEW, currentStage, medewerker);
         }catch (NumberFormatException ignored) {
         }catch (Exception e) {
             e.printStackTrace();

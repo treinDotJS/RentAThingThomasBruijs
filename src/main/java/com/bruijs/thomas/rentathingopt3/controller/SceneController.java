@@ -20,30 +20,30 @@ public class SceneController {
     public static void showScene(ViewInfo viewInfo, Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(viewInfo.getPath()));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle(viewInfo.getTitle());
-        stage.setScene(scene);
-        stage.show();
+        setAndShowStage(viewInfo.getTitle(), stage, scene);
     }
 
     public static void showScene(ViewInfo viewInfo, Stage stage, Medewerker medewerker) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(viewInfo.getPath()));
-
         Scene scene = new Scene(fxmlLoader.load());
         setMedewerker(medewerker, fxmlLoader);
-
-        stage.setTitle(String.format(viewInfo.getTitle(), medewerker.getGebruikersnaam()));
-        stage.setScene(scene);
-        stage.show();
+        setAndShowStage(String.format(viewInfo.getTitle(), medewerker.getGebruikersnaam()), stage, scene);
     }
 
     public static void showScene(ViewInfo viewInfo, Stage stage, Medewerker medewerker, Product product) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(viewInfo.getPath()));
-
         Scene scene = new Scene(fxmlLoader.load());
         setMedewerker(medewerker, fxmlLoader);
         setProduct(product, fxmlLoader);
+        setAndShowStage(String.format(viewInfo.getTitle(), medewerker.getGebruikersnaam()), stage, scene);
+    }
 
-        stage.setTitle(String.format(viewInfo.getTitle(), medewerker.getGebruikersnaam()));
+    private static FXMLLoader getFxmlLoader(String scenePath) {
+        return new FXMLLoader(SceneController.class.getResource(scenePath));
+    }
+
+    private static void setAndShowStage(String title, Stage stage, Scene scene) {
+        stage.setTitle(title);
         stage.setScene(scene);
         stage.show();
     }

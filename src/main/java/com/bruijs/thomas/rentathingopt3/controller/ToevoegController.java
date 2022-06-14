@@ -52,7 +52,7 @@ public class ToevoegController implements SetMedewerker, SetProduct{
         String[] detailValues = getDetailValues();
         for (int i = 0; i < detailValues.length; i++) {
             String value = detailValues[i];
-            if (!product.getDetail(i).setValueWithString(value)) return false;
+            if (!product.getDetail(i+1).setValueWithString(value)) return false;
         }
         return true;
     }
@@ -93,7 +93,8 @@ public class ToevoegController implements SetMedewerker, SetProduct{
     private void addDetailFields(VBox detailsBox) {
         ArrayList<Detail> details = product.getDetails();
         correctFields = new boolean[details.size()];
-        for (int i = 0; i < details.size(); i++) {
+        correctFields[0] = true;
+        for (int i = 1; i < details.size(); i++) {
             correctFields[i] = false;
             Detail detail = details.get(i);
             VBox entry = createDetailField(i, detail);

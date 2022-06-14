@@ -35,19 +35,19 @@ public class BooleanDetail extends Detail {
 
     @Override
     public boolean setValueWithString(String string) {
-        string = string.toLowerCase().trim();
+        boolean correctValue = true;
+        if (checkStringValues(TRUE_VALUE, string)) value = true;
+        else if (checkStringValues(FALSE_VALUE, string)) value = false;
+        else {
+            System.out.printf("%s moet een boolean waarde zijn, bijvoorbeeld true of false%n", getName());
+            correctValue = false;
+        }
+        return correctValue;
+    }
 
-        for (String trueValue : TRUE_VALUE)
-            if (string.equals(trueValue)) {
-                value = true;
-                return true;
-            }
-        for (String falseValue : FALSE_VALUE)
-            if (string.equals(falseValue)) {
-                value = false;
-                return true;
-            }
-        System.out.printf("%s moet een boolean waarde zijn, bijvoorbeeld true of false%n", getName());
+    private boolean checkStringValues(String[] values, String string) {
+        for (String value : values)
+            if (string.equalsIgnoreCase(value)) return true;
         return false;
     }
 }

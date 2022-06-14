@@ -53,6 +53,10 @@ public class BeheerController implements SetMedewerker {
 
     private void initialize() {
         toevoegenBtn.setDisable(true);
+        initProductListView();
+    }
+
+    private void initProductListView() {
         productListView.getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldValue, newValue) -> toevoegenBtn.setDisable(newValue == null)
         );

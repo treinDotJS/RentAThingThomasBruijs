@@ -1,6 +1,7 @@
 package com.bruijs.thomas.rentathingopt3.controller;
 
 import com.bruijs.thomas.rentathingopt3.model.Medewerker;
+import com.bruijs.thomas.rentathingopt3.model.ViewInfo;
 import com.bruijs.thomas.rentathingopt3.model.product.Product;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,42 +10,32 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SceneController {
-    public static final String LOGIN_VIEW_PATH = "/com/bruijs/thomas/rentathingopt3/view/LoginView.fxml";
-    public static final String LOGIN_VIEW_TITLE = "Login";
-    public static final String MENU_VIEW_PATH = "/com/bruijs/thomas/rentathingopt3/view/MenuView.fxml";
-    public static final String MENU_VIEW_TITLE = "Menu: %s";
-    public static final String OVERZICHT_VIEW_PATH = "/com/bruijs/thomas/rentathingopt3/view/OverzichtView.fxml";
-    public static final String OVERZICHT_VIEW_TITLE = "Overzicht: %s";
-    public static final String BEHEER_VIEW_PATH = "/com/bruijs/thomas/rentathingopt3/view/BeheerView.fxml";
-    public static final String BEHEER_VIEW_TITLE = "Beheer: %s";
-    public static final String TOEVOEG_VIEW_PATH = "/com/bruijs/thomas/rentathingopt3/view/ToevoegView.fxml";
-    public static final String TOEVOEG_VIEW_TITLE = "Toevoegvenster: %s";
-    public static final String DETAIL_VIEW_PATH = "/com/bruijs/thomas/rentathingopt3/view/DetailView.fxml";
-    public static final String DETAIL_VIEW_TITLE = "Detailvenster: %s";
+    public static final ViewInfo LOGIN_VIEW = new ViewInfo("/com/bruijs/thomas/rentathingopt3/view/LoginView.fxml", "Login");
+    public static final ViewInfo MENU_VIEW = new ViewInfo("/com/bruijs/thomas/rentathingopt3/view/MenuView.fxml", "Menu: %s");
+    public static final ViewInfo OVERZICHT_VIEW = new ViewInfo("/com/bruijs/thomas/rentathingopt3/view/OverzichtView.fxml", "Overzicht: %s");
+    public static final ViewInfo BEHEER_VIEW = new ViewInfo("/com/bruijs/thomas/rentathingopt3/view/BeheerView.fxml", "Beheer: %s");
+    public static final ViewInfo TOEVOEG_VIEW = new ViewInfo("/com/bruijs/thomas/rentathingopt3/view/ToevoegView.fxml", "Toevoegvenster: %s");
+    public static final ViewInfo DETAIL_VIEW = new ViewInfo("/com/bruijs/thomas/rentathingopt3/view/DetailView.fxml", "Detailvenster: %s");
 
-    public static void showScene(String scenePath, String title, Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = getFxmlLoader(scenePath);
+    public static void showScene(ViewInfo viewInfo, Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(viewInfo.getPath()));
         Scene scene = new Scene(fxmlLoader.load());
-        setAndShowStage(title, stage, scene);
+        setAndShowStage(viewInfo.getTitle(), stage, scene);
     }
 
-    public static void showScene(String scenePath, String title, Stage stage, Medewerker medewerker) throws IOException {
-        FXMLLoader fxmlLoader = getFxmlLoader(scenePath);
-
+    public static void showScene(ViewInfo viewInfo, Stage stage, Medewerker medewerker) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(viewInfo.getPath()));
         Scene scene = new Scene(fxmlLoader.load());
         setMedewerker(medewerker, fxmlLoader);
-
-        setAndShowStage(String.format(title, medewerker.getGebruikersnaam()), stage, scene);
+        setAndShowStage(String.format(viewInfo.getTitle(), medewerker.getGebruikersnaam()), stage, scene);
     }
 
-    public static void showScene(String scenePath, String title, Stage stage, Medewerker medewerker, Product product) throws IOException {
-        FXMLLoader fxmlLoader = getFxmlLoader(scenePath);
-
+    public static void showScene(ViewInfo viewInfo, Stage stage, Medewerker medewerker, Product product) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(SceneController.class.getResource(viewInfo.getPath()));
         Scene scene = new Scene(fxmlLoader.load());
         setMedewerker(medewerker, fxmlLoader);
         setProduct(product, fxmlLoader);
-
-        setAndShowStage(String.format(title, medewerker.getGebruikersnaam()), stage, scene);
+        setAndShowStage(String.format(viewInfo.getTitle(), medewerker.getGebruikersnaam()), stage, scene);
     }
 
     private static FXMLLoader getFxmlLoader(String scenePath) {

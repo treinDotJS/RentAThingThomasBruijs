@@ -3,6 +3,7 @@ package com.bruijs.thomas.rentathingopt3.model.product;
 import com.bruijs.thomas.rentathingopt3.model.Klant;
 import com.bruijs.thomas.rentathingopt3.model.Medewerker;
 import com.bruijs.thomas.rentathingopt3.model.product.detail.BooleanDetail;
+import com.bruijs.thomas.rentathingopt3.model.product.detail.BooleanResponse;
 import com.bruijs.thomas.rentathingopt3.model.product.detail.Detail;
 import com.bruijs.thomas.rentathingopt3.model.product.detail.DoubleDetail;
 
@@ -17,7 +18,7 @@ public final class Verhuur {
     public Verhuur(Product product, Klant klant, Medewerker medewerker, boolean verzekerd) {
         this.klant = klant;
         this.medewerker = medewerker;
-        this.verzekerd = new BooleanDetail("Verzekerd", verzekerd, BooleanDetail.JA_NEE);
+        this.verzekerd = new BooleanDetail("Verzekerd", verzekerd, BooleanResponse.JA_NEE);
         this.huurprijs = new DoubleDetail("Huurprijs(€ per dag)", product.berekenHuur(1, verzekerd));
     }
 
@@ -39,7 +40,7 @@ public final class Verhuur {
 
     public ArrayList<Detail> getDetails() {
         ArrayList<Detail> details = new ArrayList<>();
-        details.add(new BooleanDetail("Verhuurd", true, BooleanDetail.JA_NEE));
+        details.add(new BooleanDetail("Verhuurd", true, BooleanResponse.JA_NEE));
         details.add(klant().getKlantDetail());
         details.add(medewerker.getGebruikersnaamDetail());
         details.add(verzekerd);
@@ -48,7 +49,7 @@ public final class Verhuur {
     }
     public static ArrayList<Detail> getDetails(Verhuur verhuur) {
         ArrayList<Detail> details = new ArrayList<>();
-        if (verhuur == null) details.add(new BooleanDetail("Verhuurd", false, BooleanDetail.JA_NEE));
+        if (verhuur == null) details.add(new BooleanDetail("Verhuurd", false, BooleanResponse.JA_NEE));
         else details = verhuur.getDetails();
         return details;
     }

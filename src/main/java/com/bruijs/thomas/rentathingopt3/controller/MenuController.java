@@ -23,13 +23,13 @@ public class MenuController implements SetMedewerker {
     @FXML
     void showBeheer(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-        SceneController.showScene(SceneController.BEHEER_VIEW_PATH, SceneController.BEHEER_VIEW_TITLE, currentStage, medewerker);
+        SceneController.showScene(SceneController.BEHEER_VIEW, currentStage, medewerker);
     }
 
     @FXML
     void showOverzicht(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-        SceneController.showScene(SceneController.OVERZICHT_VIEW_PATH, SceneController.OVERZICHT_VIEW_TITLE, currentStage, medewerker);
+        SceneController.showScene(SceneController.OVERZICHT_VIEW, currentStage, medewerker);
     }
 
     @Override

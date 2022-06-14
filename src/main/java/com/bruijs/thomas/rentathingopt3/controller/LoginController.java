@@ -81,7 +81,7 @@ public class LoginController implements Initializable {
         Stage stage = new Stage();
         stage.setOnCloseRequest(windowEvent -> stage.close());
         stage.setOnHidden(windowEvent -> medewerker.setActive(false));
-        SceneController.showScene(SceneController.MENU_VIEW_PATH, SceneController.MENU_VIEW_TITLE, stage, medewerker);
+        SceneController.showScene(SceneController.MENU_VIEW, stage, medewerker);
     }
 
     private void addControlListeners() {

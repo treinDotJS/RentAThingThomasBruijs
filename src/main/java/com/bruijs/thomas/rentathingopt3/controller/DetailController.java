@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -127,6 +126,6 @@ public class DetailController implements Observer, SetMedewerker, SetProduct {
     @FXML
     void previousScene(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-        SceneController.showScene(SceneController.OVERZICHT_VIEW_PATH, SceneController.OVERZICHT_VIEW_TITLE, currentStage, medewerker);
+        SceneController.showScene(SceneController.OVERZICHT_VIEW, currentStage, medewerker);
     }
 }

@@ -31,7 +31,7 @@ public class BeheerController implements SetMedewerker {
     private void showToevoegVenster() throws IOException {
         Product product =  getSelectedProduct();
         Stage stage = (Stage) productListView.getScene().getWindow();
-        SceneController.showScene(SceneController.TOEVOEG_VIEW_PATH, SceneController.TOEVOEG_VIEW_TITLE, stage, medewerker, product);
+        SceneController.showScene(SceneController.TOEVOEG_VIEW, stage, medewerker, product);
     }
 
     private Product getSelectedProduct() {
@@ -53,6 +53,10 @@ public class BeheerController implements SetMedewerker {
 
     private void initialize() {
         toevoegenBtn.setDisable(true);
+        initProductListView();
+    }
+
+    private void initProductListView() {
         productListView.getSelectionModel().selectedItemProperty().addListener(
                 (observableValue, oldValue, newValue) -> toevoegenBtn.setDisable(newValue == null)
         );
@@ -69,6 +73,6 @@ public class BeheerController implements SetMedewerker {
     @FXML
     void previousScene(ActionEvent event) throws IOException {
         Stage currentStage = (Stage) ((Control)event.getSource()).getScene().getWindow();
-        SceneController.showScene(SceneController.MENU_VIEW_PATH, SceneController.MENU_VIEW_TITLE, currentStage, medewerker);
+        SceneController.showScene(SceneController.MENU_VIEW, currentStage, medewerker);
     }
 }
